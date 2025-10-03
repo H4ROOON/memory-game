@@ -1,7 +1,8 @@
-export default function Card() {
+export default function Card({ Image, name }) {
   return (
     <div className="card">
-      <p>Card</p>
+      <img src={Image} alt={name} />
+      <p>{name}</p>
     </div>
   );
 }

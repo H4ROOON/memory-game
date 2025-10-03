@@ -12,18 +12,19 @@ export default function App() {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=12");
       const data = await res.json();
 
-      const formatted = data.results.map((poke, index) => ({
-        id: index,
-        name: poke.name,
-        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-          index + 1
-        }.png`,
-      }));
+      const formatted = data.results.map((pokemon) => {
+        const id = pokemon.url.split("/").filter(Boolean).pop();
+        return {
+          id: id,
+          name: pokemon.name,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+        };
+      });
+
       setCards(formatted);
     }
     fetchData();
   }, []);
-
   return (
     <div className="app">
       <h1>Memory Game</h1>

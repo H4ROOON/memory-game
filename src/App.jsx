@@ -6,6 +6,23 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [cards, setCards] = useState([]);
+  const [clickedCards, setClickedCards] = useState([]);
+
+  function handleCardClick(id) {
+    if (clickedCards.includes(id)) {
+      setClickedCards([]);
+      setScore(0);
+    } else {
+      setClickedCards((prev) => [...prev, id]);
+      setScore((prev) => {
+        const newScore = prev + 1;
+        if (newScore > bestScore) {
+          setBestScore(newScore);
+        }
+        return newScore;
+      });
+    }
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +46,7 @@ export default function App() {
     <div className="app">
       <h1>Memory Game</h1>
       <Scoreboard score={score} bestScore={bestScore} />
-      <CardGrid cards={cards} />
+      <CardGrid cards={cards} onCardClick={handleCardClick} />
     </div>
   );
 }

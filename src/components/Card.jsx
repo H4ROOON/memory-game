@@ -1,6 +1,6 @@
-export default function Card({ image, name }) {
+export default function Card({ id, image, name, onCardClick }) {
   return (
-    <div className="card">
+    <div className="card" onClick={() => onCardClick(id)}>
       <img src={image} alt={name} />
       <p>{name}</p>
     </div>

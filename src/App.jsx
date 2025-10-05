@@ -8,6 +8,10 @@ export default function App() {
   const [cards, setCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
 
+  function shuffleArray(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+  }
+
   function handleCardClick(id) {
     if (clickedCards.includes(id)) {
       setClickedCards([]);
@@ -21,6 +25,7 @@ export default function App() {
         }
         return newScore;
       });
+      setCards(shuffleArray(cards));
     }
   }
 

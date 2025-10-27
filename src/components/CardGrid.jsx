@@ -6,10 +6,10 @@ export default function CardGrid({ cards, onCardClick }) {
       {cards.map((card) => (
         <Card
           key={card.id}
+          id={card.id}
           name={card.name}
           image={card.image}
           onCardClick={onCardClick}
-          id={card.id}
         />
       ))}
     </div>

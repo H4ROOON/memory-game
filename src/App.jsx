@@ -47,6 +47,7 @@ export default function App() {
     }
     fetchData();
   }, []);
+
   return (
     <div className="App">
       <h1>Memory Game</h1>
@@ -56,17 +57,8 @@ export default function App() {
         </p>
         <p className="best-score">Best Score: {bestScore}</p>
       </div>
-      <div className="card-grid">
-        {cards.map((card) => (
-          <div
-            key={card.id}
-            className="card"
-            onClick={() => handleCardClick(card.id)}
-          >
-            <img src={card.image} alt={card.name} />
-          </div>
-        ))}
-      </div>
+
+      <CardGrid cards={cards} onCardClick={handleCardClick} />
     </div>
   );
 }
